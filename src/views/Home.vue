@@ -12,7 +12,7 @@
         "
       >
         <div class="col align-self-center texto-inicio">
-          <h3>Dedícate a lo que importa, nosotros nos encargamos del resto</h3>
+          <h3><span class="texto-azul">Dedícate a lo que importa</span>, nosotros nos encargamos del resto</h3>
           <p>
             Programa, desarrolla y lleva a cabo tus proyectos sin preocuparte en
             absoluto en la infraestructura.
@@ -84,7 +84,7 @@
         />
       </div>
       <div class="col align-self-center texto-inicio">
-        <h3>Alta disponibilidad y escabilidad sin complicaciones</h3>
+        <h3>Alta disponibilidad y escabilidad <span class="texto-azul">sin complicaciones</span></h3>
         <p>
           Todo nuestros servicios están autogestionados. Ya no tendrás que
           preocuparte más en distribución de carga, DNS, firewalls, puertos...
@@ -107,6 +107,10 @@ export default {
 </script>
 
 <style scoped>
+.texto-azul {
+  color: #6C63FF;
+}
+
 .texto-inicio {
   padding-left: 22px;
   padding-bottom: 155px;
@@ -142,5 +146,9 @@ export default {
 
 #seccion1, #seccion2, #seccion3 {
   padding: 50px 0;
+}
+
+#seccion1 {
+  margin-top: 40px;
 }
 </style>

@@ -10,7 +10,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^1.29.3",
     "core-js": "^3.6.5",
-    "sweetalert2": "^11.3.6",
+    "sweetalert2": "^11.3.7",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
   },

@@ -6,6 +6,6 @@
 
 <style>
   * {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat' !important;
   }
 </style>
