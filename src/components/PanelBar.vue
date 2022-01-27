@@ -21,7 +21,7 @@ import { createClient } from '@supabase/supabase-js'
 import Swal from 'sweetalert2'
 
 export default {
-  name: 'NavBar',
+  name: 'PanelBar',
   data() {
     return {
       supabase: {},
