@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="crear-instancia">
     <NavBar/>
   </div>
 </template>
@@ -7,9 +7,10 @@
 <script>
 import NavBar from "@/components/NavBar.vue";
 import { createClient } from '@supabase/supabase-js'
+//import Swal from 'sweetalert2'
 
 export default {
-  name: 'Panel',
+  name: 'Crear',
   components: {
     NavBar
   },

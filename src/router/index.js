@@ -21,6 +21,11 @@ const routes = [
     path: '/panel',
     name: 'Panel',
     component: () => import('../views/Panel.vue')
+  },
+  {
+    path: '/instanciar',
+    name: 'Instanciar',
+    component: () => import('../views/Instancias/Crear.vue')
   }
 ]
 
