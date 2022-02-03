@@ -51,14 +51,26 @@ export default {
           })
           console.log(user, session);
         } else {
-          this.$router.push("/")
+          Swal.fire({
+            icon: 'info',
+            title: 'Verifica tu cuenta',
+            text: 'Por favor, verifica tu cuenta de correo electrónico haciendo click en el enlace que se te ha enviado a tu correo electrónico'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.$router.push({name: "Login"})
+            }
+          })
         }
         console.log(user, session, error);
       } else {
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: '¡Las contraseñas no coinciden!'
+            title: 'Las contraseñas no coinciden',
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
         })
       } 
     }

@@ -8,4 +8,7 @@
   * {
     font-family: 'Montserrat' !important;
   }
+  .texto-azul {
+  color: #6C63FF;
+  }
 </style>

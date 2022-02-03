@@ -3,7 +3,7 @@
     <div class="container-fluid"><router-link class="navbar-brand" to="/">JustHostIt</router-link><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div id="navcol-1" class="collapse navbar-collapse">
             <ul v-if="usuario" class="navbar-nav ms-auto">
-                <li class="nav-item dropdown"><router-link to="/" class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" >Bienvenido {{nombreUsuario}}</router-link>
+                <li class="nav-item dropdown"><router-link to="/" class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" >Bienvenido <span class="texto-azul">{{nombreUsuario}}</span></router-link>
                     <div class="dropdown-menu"><router-link to="/panel" class="dropdown-item">Panel de control</router-link><a class="dropdown-item" v-on:click="cerrarSesion">Cerrar sesión</a></div>
                 </li>
             </ul>

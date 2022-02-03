@@ -11,7 +11,7 @@
               Iniciar sesión
             </button>
           </div>
-          <a class="forgot" href="#">¿Has olvidado tu contraseña?</a>
+          <!-- <a class="forgot" href="#">¿Has olvidado tu contraseña?</a> -->
       </form>
     </div>
   </div>
@@ -43,13 +43,26 @@ export default {
       const { user, session, error } = await this.supabase.auth.signIn({email: this.correo, password: this.contraseña});
       if (error) {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Tus credenciales son incorrectas!'
+            icon: 'error',
+            title: 'Los datos no son correctos',
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
         })
         console.log(user, session);
       } else {
-        this.$router.push("/")
+        Swal.fire({
+            icon: 'success',
+            title: 'Has iniciado sesión',
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
+        })
+        this.$router.push({name: "Home"})
       }
       console.log(user, session, error);
     }
