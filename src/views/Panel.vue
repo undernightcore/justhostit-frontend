@@ -48,6 +48,7 @@ export default {
       this.$router.push({name: "Login"})
     }
     this.instancias = await this.supabase.from("Instancias").select("*, Plantillas:id_plantilla ( nombre, logo ), Versiones:id_version ( nombre )");
+    console.log(this.instancias);
   },
   methods: {
   }
