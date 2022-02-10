@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    name: 'Carta',
+    name: 'CartaPlantilla',
     props: {
         plantilla: Object
     },
@@ -21,7 +21,7 @@ export default {
     },
     methods: {
         seleccionar: function () {
-            this.$emit('seleccionado', this.plantilla.id);
+            this.$emit('seleccionado', this.plantilla);
         }
     }
 }

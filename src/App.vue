@@ -11,4 +11,7 @@
   .texto-azul {
   color: #6C63FF;
   }
+  .texto-azul:hover {
+  color: #6C63FF;
+  }
 </style>

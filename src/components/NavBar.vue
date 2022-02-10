@@ -2,6 +2,10 @@
   <nav class="navbar navbar-light navbar-expand-md fixed-top">
     <div class="container-fluid"><router-link class="navbar-brand" to="/">JustHostIt</router-link><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div id="navcol-1" class="collapse navbar-collapse">
+            <ul v-if="panel" class="navbar-nav">
+              <li class="nav-item"><router-link to="/panel" class="nav-link active">Lista de instancias</router-link></li>
+              <li class="nav-item"><router-link to="/instanciar" class="nav-link">Crear nueva instancia</router-link></li>
+            </ul>
             <ul v-if="usuario" class="navbar-nav ms-auto">
                 <li class="nav-item dropdown"><router-link to="/" class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" >Bienvenido <span class="texto-azul">{{nombreUsuario}}</span></router-link>
                     <div class="dropdown-menu"><router-link to="/panel" class="dropdown-item">Panel de control</router-link><a class="dropdown-item" v-on:click="cerrarSesion">Cerrar sesión</a></div>
@@ -27,6 +31,9 @@ export default {
       supabase: {},
       usuario: ""
     }
+  },
+  props: {
+    panel: Boolean
   },
   async created() {
     this.supabase = createClient('http://localhost:54321', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiJ9.ZopqoUt20nEV9cklpv9e3yw3PVyZLmKs5qLD6nGL1SI')
