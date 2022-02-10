@@ -81,7 +81,7 @@ export default {
     if (!await this.supabase.auth.user()) {
       this.$router.push({name: "Login"})
     }
-    this.plantillas = await this.supabase.from('Plantillas').select('*, Versiones!Instancias(*)');
+    this.plantillas = await this.supabase.from('Plantillas').select('*, Versiones!Versiones_plantilla_fkey(*)');
   },
   methods: {
     siguientePagina: function () {
