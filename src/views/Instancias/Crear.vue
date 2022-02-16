@@ -108,15 +108,29 @@ export default {
         {nombre: this.nombre, descripcion: this.descripcion, id_user: await this.supabase.auth.user().id, id_plantilla: this.plantilla.id, id_version: this.version.id}
       ])
       if (this.instancia) {
+        await this.supabase.from('Instancias').select()
+        const response = await fetch("http://localhost:3000/contenedor/crear", {
+          method: 'POST',
+          cache: 'no-cache',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+          body: JSON.stringify({
+            idContenedor: this.instancia.data[0].token
+          })
+        });
+        const data = await response.json();
         Swal.fire({
-            icon: 'success',
-            title: 'Has creado una instancia',
-            text: 'Un nodo esta completando la operación',
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true
+          icon: 'success',
+          title: 'Has creado una instancia',
+          text: data.mensaje,
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true
         })
         this.$router.push({name: 'Panel'})
       }
