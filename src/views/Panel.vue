@@ -6,7 +6,7 @@
         <div class="contenedor-panel">
           <div class="row row-cols-1 row-cols-md-3 g-4">
             <div v-for="instancia in instancias.data" :key="instancia.id" class="col">
-              <CartaInstancia :instancia="instancia" />
+              <CartaInstancia @seleccionar="usarInstancia($event)" @eliminar="eliminarInstancia($event)" :instancia="instancia" />
             </div>
           </div>
         </div>
@@ -28,6 +28,7 @@ import NavBar from "@/components/NavBar.vue";
 import Cargando from "@/components/Cargando.vue";
 import CartaInstancia from "@/components/CartaInstancia.vue";
 import { createClient } from '@supabase/supabase-js'
+import Swal from 'sweetalert2'
 
 export default {
   name: 'Panel',
@@ -43,7 +44,7 @@ export default {
     }
   },
   async created() {
-    this.supabase = createClient('http://localhost:54321', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiJ9.ZopqoUt20nEV9cklpv9e3yw3PVyZLmKs5qLD6nGL1SI')
+    this.supabase = createClient('https://bebykmrsmcbqvusyizps.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlYnlrbXJzbWNicXZ1c3lpenBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTMyMjgxNjAsImV4cCI6MTk2ODgwNDE2MH0.uiu7j8itRQZP3zxn8JcuZuiQYC168eGptHup28axAhQ')
     if (!await this.supabase.auth.user()) {
       this.$router.push({name: "Login"})
     }
@@ -51,6 +52,38 @@ export default {
     console.log(this.instancias);
   },
   methods: {
+    eliminarInstancia(token) {
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertirlo!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Si, eliminalo!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await fetch("http://localhost:3000/contenedor/eliminar", {
+            method: 'DELETE',
+            cache: 'no-cache',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify({
+              idContenedor: token
+            })
+          });
+          setTimeout(async () => {
+            this.instancias = await this.supabase.from("Instancias").select("*, Plantillas:id_plantilla ( nombre, logo ), Versiones:id_version ( nombre )");
+          }, 1000)
+        }
+      })
+    },
+    usarInstancia(id) {
+      this.$router.push({name: "UsarInstancia", params: {id}})
+    }
   }
 }
 </script>

@@ -77,7 +77,7 @@ export default {
     }
   },
   async created() {
-    this.supabase = createClient('http://localhost:54321', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiJ9.ZopqoUt20nEV9cklpv9e3yw3PVyZLmKs5qLD6nGL1SI')
+    this.supabase = createClient('https://bebykmrsmcbqvusyizps.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlYnlrbXJzbWNicXZ1c3lpenBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTMyMjgxNjAsImV4cCI6MTk2ODgwNDE2MH0.uiu7j8itRQZP3zxn8JcuZuiQYC168eGptHup28axAhQ')
     if (!await this.supabase.auth.user()) {
       this.$router.push({name: "Login"})
     }
@@ -108,7 +108,6 @@ export default {
         {nombre: this.nombre, descripcion: this.descripcion, id_user: await this.supabase.auth.user().id, id_plantilla: this.plantilla.id, id_version: this.version.id}
       ])
       if (this.instancia) {
-        await this.supabase.from('Instancias').select()
         const response = await fetch("http://localhost:3000/contenedor/crear", {
           method: 'POST',
           cache: 'no-cache',

@@ -36,7 +36,7 @@ export default {
     }
   },
   created() {
-    this.supabase = createClient('http://localhost:54321', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiJ9.ZopqoUt20nEV9cklpv9e3yw3PVyZLmKs5qLD6nGL1SI')
+    this.supabase = createClient('https://bebykmrsmcbqvusyizps.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlYnlrbXJzbWNicXZ1c3lpenBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTMyMjgxNjAsImV4cCI6MTk2ODgwNDE2MH0.uiu7j8itRQZP3zxn8JcuZuiQYC168eGptHup28axAhQ')
   },
   methods: {
     registrarse: async function (e) {
@@ -55,10 +55,8 @@ export default {
             icon: 'info',
             title: 'Verifica tu cuenta',
             text: 'Por favor, verifica tu cuenta de correo electrónico haciendo click en el enlace que se te ha enviado a tu correo electrónico'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              this.$router.push({name: "Login"})
-            }
+          }).then(() => {
+            this.$router.push({name: "Home"})
           })
         }
         console.log(user, session, error);

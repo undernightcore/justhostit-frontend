@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-light navbar-expand-md fixed-top">
+  <nav class="navbar navbar-light navbar-expand-md" :class="{'fixed-top': !opaque}">
     <div class="container-fluid"><router-link class="navbar-brand" to="/">JustHostIt</router-link><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div id="navcol-1" class="collapse navbar-collapse">
             <ul v-if="panel" class="navbar-nav">
@@ -33,10 +33,11 @@ export default {
     }
   },
   props: {
-    panel: Boolean
+    panel: Boolean,
+    opaque: Boolean
   },
   async created() {
-    this.supabase = createClient('http://localhost:54321', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiJ9.ZopqoUt20nEV9cklpv9e3yw3PVyZLmKs5qLD6nGL1SI')
+    this.supabase = createClient('https://bebykmrsmcbqvusyizps.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlYnlrbXJzbWNicXZ1c3lpenBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTMyMjgxNjAsImV4cCI6MTk2ODgwNDE2MH0.uiu7j8itRQZP3zxn8JcuZuiQYC168eGptHup28axAhQ')
     this.usuario = await this.supabase.auth.user();
   },
   computed: {

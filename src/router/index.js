@@ -26,6 +26,11 @@ const routes = [
     path: '/instanciar',
     name: 'Instanciar',
     component: () => import('../views/Instancias/Crear.vue')
+  },
+  {
+    path: '/instancia/:id',
+    name: 'UsarInstancia',
+    component: () => import('../views/Instancias/Usar.vue')
   }
 ]
 

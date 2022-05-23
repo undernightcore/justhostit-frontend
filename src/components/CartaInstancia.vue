@@ -1,6 +1,8 @@
 <template>
-    <div class="card" @click="seleccionar()">
+    <div class="card">
         <div class="card-body">
+            <span @click="eliminar()" class="trash"><img src="@/assets/img/ban-solid.svg"/> Eliminar</span>
+            <div @click="seleccionar()">
             <img :src="instancia.Plantillas.logo" class="card-img-top" alt="..." style="width: 10%; margin-bottom: 10px; filter: grayscale(100%);">
             <h6 class="card-title"><span class="texto-azul">Nombre:</span> {{instancia.nombre}}</h6>
             <h6 class="card-title"><span class="texto-azul">Descripcion:</span> {{instancia.descripcion}}</h6>
@@ -9,6 +11,7 @@
                 <span v-else-if="instancia.creandose" class="creandose">Creandose</span>
                 <span v-else class="pendiente">Pendiente</span>
             </h6>
+            </div>
         </div>
     </div>
 </template>
@@ -21,7 +24,13 @@ export default {
     },
     methods: {
         seleccionar: function () {
-            this.$emit('seleccionado', this.version);
+            if(this.instancia.creada == true) {
+                this.$emit('seleccionar', this.instancia.id);
+            }
+        },
+
+        eliminar: function () {
+            this.$emit('eliminar', this.instancia.token);
         }
     }
 }
@@ -38,6 +47,16 @@ export default {
 
 .pendiente {
 color: #aaaaaa;
+}
+
+.trash {
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}
+
+.trash img {
+    width: 20px;
 }
 
 .card:hover {
